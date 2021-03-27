@@ -1,0 +1,132 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        "/Archive": (contex) => HalArchive(),
+        "/Add Photo": (contex) => HalAddPhoto(),
+        "/Add Alarm": (contex) => HalAddAlarm(),
+        "/Star": (contex) => HalStar(),
+     
+      },
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Menu Display'),
+        ),
+        body: GridView.count(
+          crossAxisCount: 2,
+          children: <Widget>[
+            MenuUtama(menu: "Archive", picture: Icons.archive),
+            MenuUtama(menu: "Add Photo", picture: Icons.add_a_photo),
+            MenuUtama(menu: "Add Alarm", picture: Icons.add_alarm),
+            MenuUtama(menu: "Star", picture: Icons.star),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MenuUtama extends StatelessWidget {
+  final String menu;
+  final IconData picture;
+
+  MenuUtama({this.menu, this.picture});
+
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(8.0),
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, "/$menu");
+        },
+        splashColor: Colors.purple,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(picture, size: 70.0),
+              Text(menu, style: new TextStyle(fontSize: 17.0))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HalArchive extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Archive"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Icon(Icons.archive, size: 75.0),
+            Text('Archive', style: new TextStyle(fontSize: 17.0))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HalAddPhoto extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Photo"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Icon(Icons.add_a_photo , size: 75.0),
+            Text('Photo Collection',style: new TextStyle(fontSize: 17.0))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HalAddAlarm extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Alarm"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Icon(Icons.add_alarm , size: 75.0),
+            Text('Add Alarm', style: new TextStyle(fontSize: 17.0))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HalStar extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Star"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Icon(Icons.star , size: 75.0),
+            Text('Star', style: new TextStyle(fontSize: 17.0))
+          ],
+        ),
+      ),
+    );
+  }
+}
